@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "restify": "^6.3.4"
+    "nodemon": "^1.17.1",
+    "restify": "^6.3.4",
+    "uuid": "^3.2.1"
   }
 }

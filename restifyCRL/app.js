@@ -23,16 +23,19 @@ let swimlanes = [{
 
 let cards = [{
 		"id": 1,
-		"name": "card 1",
+		"swimlane_id": 1,
+		"name": "card 1"
 		
 	},
 	{
 		"id": 2,
-		"name": "card 2",
+		"swimlane_id": 2,
+		"name": "card 2"
 	},
 	{
 		"id": 3,
-		"name": "card 3",
+		"swimlane_id": 3,
+		"name": "card 3"
 	}
 ];
 
@@ -41,8 +44,9 @@ var Swimlane = function(id, name){
 	this.name = name;
 }
 
-var Card = function(id, name){
+var Card = function(id, swimlane_id, name){
 	this.id = id;
+	this.swimlane_id = swimlane_id;
 	this.name = name;
 }
 
@@ -87,7 +91,7 @@ function postCard(req, res, next) {
 	
 	console.log(req.body);
 
-	var card = new Card(req.body.id, req.body.name);
+	var card = new Card(req.body.id, req.body.swimlane_id, req.body.name);
 
 	cards.push(card);
 
@@ -95,9 +99,24 @@ function postCard(req, res, next) {
 
 	res.send(card);
 }
+
+function getCardsBySwimlaneId (req, res, next){
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	
+	console.log(req.params)
+	var results = cards.filter(function(card){
+		return card.swimlane_id == req.params.swimlane_id;
+	});
+
+	res.send(results);
+}
+
 // Set up our routes and start the server
 server.get('/swimlanes', getSwimlanes);
 server.post('/swimlanes', postSwimlane);
+
+server.get('/swimlanes/:swimlane_id/cards', getCardsBySwimlaneId);
 
 server.get('/cards', getCards);
 server.post('/cards', postCard);

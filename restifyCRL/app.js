@@ -8,34 +8,37 @@ server.use(restify.plugins.bodyParser());
 
 let swimlanes = [{
 		"id": 1,
-		"name": "swimlane 1",
+		"name": "Swimlane 1",
 		
 	},
 	{
 		"id": 2,
-		"name": "swimlane 2",
+		"name": "Swimlane 2",
 	},
 	{
 		"id": 3,
-		"name": "swimlane 3",
+		"name": "Swimlane 3",
 	}
 ];
 
 let cards = [{
 		"id": 1,
 		"swimlane_id": 1,
-		"name": "card 1"
+		"name": "Card 1",
+		"cardDescription": "Card Description 1"
 		
 	},
 	{
 		"id": 2,
 		"swimlane_id": 2,
-		"name": "card 2"
+		"name": "Card 2",
+		"cardDescription": "Card Description 2"
 	},
 	{
 		"id": 3,
 		"swimlane_id": 3,
-		"name": "card 3"
+		"name": "Card 3",
+		"cardDescription": "Card Description 3"
 	}
 ];
 
@@ -91,7 +94,7 @@ function postCard(req, res, next) {
 	
 	console.log(req.body);
 
-	var card = new Card(req.body.id, req.body.swimlane_id, req.body.name);
+	var card = new Card(req.body.id, req.body.swimlane_id, req.body.name, req.body.cardDescription);
 
 	cards.push(card);
 

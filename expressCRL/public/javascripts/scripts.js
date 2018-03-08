@@ -5,7 +5,7 @@ $('document').ready(function() {
         var swimlaneName = prompt('New swimlane name');
 
         var id = getNewId();
-        drawSwimlane(id, swimlaneName, cardDescription);
+        drawSwimlane(id, swimlaneName);
         saveSwimlane({id: id, name: swimlaneName});   
     });
 });
@@ -87,11 +87,13 @@ function drawSwimlane(id, name) {
     buttons.on('click', '.fa-pencil-alt', function() {
         var newName = prompt('New card name').value;
         $('this').closest(".cardHeader").remove();
+
         $('swimlane').append(newName);
     });
 
     buttons.on('click', '.fa-plus', function() {
         var cardHeader = prompt('New card name');
+        var cardDescription = prompt('Card description');
         var cardId = getNewId();
         drawCard(id, cardHeader, cardDescription);       
         saveCard({id: cardId, swimlane_id: id, name: cardHeader, cardDescription: cardDescription});

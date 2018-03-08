@@ -47,10 +47,11 @@ var Swimlane = function(id, name){
 	this.name = name;
 }
 
-var Card = function(id, swimlane_id, name){
+var Card = function(id, swimlane_id, name, cardDescription){
 	this.id = id;
 	this.swimlane_id = swimlane_id;
 	this.name = name;
+	this.cardDescription = cardDescription;
 }
 
 function getSwimlanes(req, res, next) {
